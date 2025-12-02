@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÓE Szellemi Tulajdon - Tájékoztató</title>
+    <style>
+        :root {
+            --color-primary: #1a6874;
+            --color-primary-light: #32b8c6;
+            --color-bg: #f5f5f5;
+            --color-surface: #ffffff;
+            --color-text: #1f2121;
+            --color-text-light: #626c7c;
+            --color-accent: #c01f2f;
+            --color-success: #228059;
+            --color-border: #d4d4d4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 14px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: var(--color-text);
+            background-color: var(--color-bg);
+        }
+
+        body {
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+            color: white;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header-title h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .header-title p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .search-box {
+            flex: 1;
+            max-width: 300px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.6rem 1rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+        }
+
+        nav.sidebar {
+            background: var(--color-surface);
+            padding: 1.5rem;
+            border-radius: 8px;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        nav h3 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-primary-light);
+            padding-bottom: 0.5rem;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        nav button {
+            width: 100%;
+            text-align: left;
+            padding: 0.7rem 1rem;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            color: var(--color-text);
+            transition: all 0.2s;
+        }
+
+        nav button:hover {
+            background: var(--color-bg);
+            color: var(--color-primary);
+        }
+
+        nav button.active {
+            background: var(--color-primary-light);
+            color: white;
+            font-weight: 600;
+        }
+
+        .content {
+            background: var(--color-surface);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .content h2 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+            border-bottom: 3px solid var(--color-primary-light);
+            padding-bottom: 0.7rem;
+        }
+
+        .content h3 {
+            color: var(--color-primary);
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .content p {
+            margin-bottom: 1rem;
+            color: var(--color-text-light);
+            line-height: 1.7;
+        }
+
+        .content ul, .content ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+            color: var(--color-text-light);
+        }
+
+        .content li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .highlight-box {
+            background: #f0f8ff;
+            border-left: 4px solid var(--color-primary-light);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .highlight-box strong {
+            color: var(--color-primary);
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid var(--color-success);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th {
+            background: var(--color-primary-light);
+            color: white;
+            padding: 0.8rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 0.8rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .process-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 6px;
+            border-left: 4px solid var(--color-primary-light);
+        }
+
+        .timeline-num {
+            background: var(--color-primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .timeline-content h4 {
+            margin-top: 0;
+            color: var(--color-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-content p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: #f9f9f9;
+            padding: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--color-primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+
+        .faq-question:hover {
+            background: #efefef;
+        }
+
+        .faq-answer {
+            padding: 1rem;
+            background: white;
+            display: none;
+            color: var(--color-text-light);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        .faq-toggle {
+            font-size: 1.2rem;
+            transition: transform 0.2s;
+        }
+
+        .faq-toggle.active {
+            transform: rotate(180deg);
+        }
+
+        .key-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--color-primary-light);
+        }
+
+        .info-card h4 {
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card p {
+            font-size: 0.95rem;
+            color: var(--color-text-light);
+            margin: 0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        button.btn-back {
+            background: var(--color-primary-light);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            transition: background 0.2s;
+        }
+
+        button.btn-back:hover {
+            background: var(--color-primary);
+        }
+
+        @media (max-width: 768px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            nav.sidebar {
+                position: static;
+            }
+
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .search-box {
+                max-width: 100%;
+            }
+
+            .key-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 2rem;
+            color: var(--color-text-light);
+        }
+
+        .breadcrumb {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+
+        .breadcrumb a {
+            color: var(--color-primary-light);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="header-title">
+                <h1>🎓 Szellemi Tulajdon Tájékoztató</h1>
+                <p>Az Óbudai Egyetem Szellemi Tulajdon Kezelési Szabályzata - Közérthető Útmutató</p>
+            </div>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Keresés...">
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="layout">
+            <nav class="sidebar">
+                <h3>📑 Témakörök</h3>
+                <ul id="navMenu"></ul>
+            </nav>
+
+            <div class="content" id="mainContent"></div>
+        </div>
+    </div>
+
+    <script>
+        const sections = [
+            {
+                id: 'overview',
+                title: '🎯 Áttekintés',
+                content: `
+                    <h2>Mit kell tudni a szellemi tulajdon kezeléséről?</h2>
+                    <p>Az Óbudai Egyetem szellemi tulajdon kezelési szabályzata biztosítja az egyetemen létrehozott kutatási eredmények, találmányok és szerzői művek megfelelő kezelését és hasznosítását.</p>
+                    
+                    <div class="highlight-box">
+                        <strong>💡 Lényeg:</strong> Ha az egyetemen vagy az egyetem infrastruktúráját felhasználva szellemi alkotást hozol létre, azt jelenteni kell, és az egyetem jogot szerzhet rá.
+                    </div>
+
+                    <h3>Ki tartozik a szabályzat hatálya alá?</h3>
+                    <ul>
+                        <li><strong>Alkalmazottak:</strong> Tanárok, kutatók és egyéb alkalmazottak</li>
+                        <li><strong>Hallgatók:</strong> BSc, MSc és PhD hallgatók</li>
+                        <li><strong>Vendégkutatók:</strong> Akik az egyetem infrastruktúráját használják</li>
+                        <li><strong>Projektmunkatársak:</strong> Akik az egyetem támogatásával dolgoznak</li>
+                    </ul>
+
+                    <h3>Milyen típusú szellemi alkotások érintettek?</h3>
+                    <div class="key-info">
+                        <div class="info-card">
+                            <h4>💡 Találmányok</h4>
+                            <p>Szabadalmak, használati és formatervezési minták</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>✍️ Szerzői művek</h4>
+                            <p>Szoftverek, tankönyvek, tudományos munkák</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>🔐 Know-how</h4>
+                            <p>Üzleti titkok, védett ismeretek</p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'types',
+                title: '📋 Szellemi alkotások típusai',
+                content: `
+                    <h2>Milyen szellemi alkotások Vannak?</h2>
+                    
+                    <h3>1. Szolgálati szellemi alkotás</h3>
+                    <div class="success-box">
+                        <strong>Az egyetemé az iparjogvédelmi jog és egyéb jogok!</strong>
+                    </div>
+                    <p><strong>Mikor minősül szolgálatinak?</strong></p>
+                    <ul>
+                        <li>Az egyetem információját, üzleti titkát, infrastruktúráját használod</li>
+                        <li>Az egyetem kezdeményezésére készült</li>
+                        <li>Az egyetem finanszírozása vagy támogatása nélkül nem jöhetett volna létre</li>
+                        <li>Munkaidőben vagy az egyetem támogatásával készült</li>
+                    </ul>
+                    <p><strong>Feltaláló közreműködés:</strong> Ezt az értékelés során az IB megvizsgálja.</p>
+
+                    <h3>2. Alkalmazotti szellemi alkotás</h3>
+                    <div class="success-box">
+                        <strong>A feltalálóé az iparjogvédelmi jog, de az egyetem nem kizárólagos hasznosítási jogot szerzett!</strong>
+                    </div>
+                    <p><strong>Mikor minősül alkalmazottinak?</strong></p>
+                    <ul>
+                        <li>Az egyetem tevékenységi körébe tartozik</li>
+                        <li>De nem a munkaköri kötelességed volt azt létrehozni</li>
+                        <li>Saját kezdeményezésedre készült</li>
+                    </ul>
+
+                    <h3>3. Független szellemi alkotás</h3>
+                    <p><strong>Ezzel nem lehet problémád:</strong> Ha nem használtad az egyetem infrastruktúráját, saját idődben, saját eszközökkel készült, akkor teljes joggal rendelkezel rajta.</p>
+
+                    <div class="highlight-box">
+                        <strong>⚠️ Fontos:</strong> Az egyetem mindhárom típusnak megfelelően köteles díjazásban részesíteni a feltalálót!
+                    </div>
+                `
+            },
+            {
+                id: 'process',
+                title: '🔄 A jelentési folyamat',
+                content: `
+                    <h2>Hogyan történik a szellemi alkotás kezelése?</h2>
+                    
+                    <div class="process-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-num">1</div>
+                            <div class="timeline-content">
+                                <h4>Belső bejelentés (Belső elismert nap)</h4>
+                                <p><strong>Teendő:</strong> Kitöltöd a "Szellemi Tulajdon Bejelentő Lapot" az Innovációs Iroda (INI) által biztosított űrlap szerint.</p>
+                                <p><strong>Küldés:</strong> Dékánnak, témavezetőnek vagy a felettesednek. Ők továbbítják az INI-nek.</p>
+                                <p><strong>Időszak:</strong> Bejelentésnek haladéktalanul meg kell történnie!</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-num">2</div>
+                            <div class="timeline-content">
+                                <h4>Formai vizsgálat (8 munkanap)</h4>
+                                <p><strong>INI dolgozik:</strong> Megvizsgálja az űrlap teljességét. Ha hiányos, visszaküld kiegészítésre.</p>
+                                <p><strong>Nyilvántartásba vétel:</strong> Cuando az dokumentum teljes, az INI nyilvántartásba veszi, és elkezdi az értékelést.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-num">3</div>
+                            <div class="timeline-content">
+                                <h4>Előzetes értékelés (10 munkanap)</h4>
+                                <p><strong>Újdonságkutatás:</strong> Az INI vagy a Szellemi Tulajdon Nemzeti Hivatala (SZTNH) újdonságkutatást végez.</p>
+                                <p><strong>Egyeztetés:</strong> Közösen feltárjátok a kezeléshez szükséges körülményeket.</p>
+                                <p><strong>Hasznosítási stratégia:</strong> Közösen alakítjátok ki a terveket.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-num">4</div>
+                            <div class="timeline-content">
+                                <h4>IB döntés (Innovációs Bizottság)</h4>
+                                <p><strong>Befogadás?</strong> Az IB dönt, hogy az egyetem befogadja-e a szellemi alkotást.</p>
+                                <p><strong>90 napos határidő:</strong> Az első bejelentésétől számított 90 nap alatt meg kell történnie.</p>
+                                <p><strong>Nyilatkozat:</strong> Szolgálati találmány? Alkalmazotti? Iparjogvédelmi oltalom?</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-num">5</div>
+                            <div class="timeline-content">
+                                <h4>Iparjogvédelmi bejelentés (90 nap)</h4>
+                                <p><strong>Ha szükséges:</strong> Az INI szabadalmi bejelentést indít (szabadalmi ügyvivővel).</p>
+                                <p><strong>Költségek:</strong> Az egyetem vállalja az oltalmazási költségeket.</p>
+                                <p><strong>Feltaláló közreműködése:</strong> Szükséges lesz aláírás és szakmai információ.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-num">6</div>
+                            <div class="timeline-content">
+                                <h4>Hasznosítás</h4>
+                                <p><strong>Kitől?</strong> Elsősorban az Initium Zrt. (az egyetem hasznosító vállalata) által.</p>
+                                <p><strong>Módok:</strong> Belső használat, licencadás, értékesítés, startup alapítás.</p>
+                                <p><strong>Díjazás:</strong> Akkor kezdődik, amikor a hasznosítás pénzügyi bevételt hoz.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="highlight-box">
+                        <strong>📌 Emlékeztetô:</strong> A bejelentés HALADÉKTALANUL meg kell történnie! Azt követő nyilvánosságra hozatal újdonságot ront!
+                    </div>
+                `
+            },
+            {
+                id: 'rights',
+                title: '💰 Jogok és díjazás',
+                content: `
+                    <h2>Milyen díjazás jár nekem?</h2>
+                    
+                    <h3>Szolgálati szellemi alkotás díjazása</h3>
+                    <div class="highlight-box">
+                        <strong>Az egyetem tulajdona, de TE díjat kapsz!</strong>
+                    </div>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Időszak</th>
+                                <th>Feltaláló hányada</th>
+                                <th>Egyetem hányada</th>
+                                <th>Megjegyzés</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1-24. hónap</td>
+                                <td><strong>40%</strong></td>
+                                <td>60%</td>
+                                <td>Kezdeti bevételből</td>
+                            </tr>
+                            <tr>
+                                <td>25. hónaptól</td>
+                                <td>40% - 5% szép.12 havonta</td>
+                                <td>Növekszik</td>
+                                <td>Minimum 10%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Alkalmazotti szellemi alkotás díjazása</h3>
+                    <div class="success-box">
+                        <strong>Több jogod van - magasabb díjazás!</strong>
+                    </div>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Időszak</th>
+                                <th>Feltaláló hányada</th>
+                                <th>Egyetem hányada</th>
+                                <th>Megjegyzés</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1-24. hónap</td>
+                                <td><strong>60%</strong></td>
+                                <td>40%</td>
+                                <td>Kezdeti bevételből</td>
+                            </tr>
+                            <tr>
+                                <td>25. hónaptól</td>
+                                <td>60% - 5% szép. 12 havonta</td>
+                                <td>Növekszik</td>
+                                <td>Minimum 10%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Szerzői Művek Díjazása</h3>
+                    <p><strong>Általában NINCS díjazás</strong> - kivéve:</p>
+                    <ul>
+                        <li>Szoftverek és számítógépes algoritmusok</li>
+                        <li>Gyűjteményes művek (adatbázisok)</li>
+                        <li>Kiemelt figyelmet érdemlő művek (IB engedéllyel)</li>
+                    </ul>
+
+                    <h3>Költségek Levonása</h3>
+                    <p><strong>A szellemi alkotás védelmének költsége levonásra kerül:</strong></p>
+                    <ul>
+                        <li>Újdonságkutatás</li>
+                        <li>Hasznosíthatósági vizsgálat</li>
+                        <li>Piackutatás</li>
+                        <li>Szabadalmi eljárás díja</li>
+                        <li>Ügyvivői díjak</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <strong>💼 Díjszerződés:</strong> Ezekről külön szerződés kell, amit az INI és a Jogi Iroda készít. Te és az egyetem megállapodhatonál eltérésekben!
+                    </div>
+                `
+            },
+            {
+                id: 'responsibilities',
+                title: '✅ Kötelezettségeid',
+                content: `
+                    <h2>Mit kell tenned?</h2>
+                    
+                    <h3>1. Bejelentés</h3>
+                    <div class="warning-box">
+                        <strong>⚠️ KÖTELEZÕ!</strong> Haladéktalanul be kell jelentened az egyetemnek!
+                    </div>
+                    <ul>
+                        <li>Töltsd ki a Szellemi Tulajdon Bejelentő Lapot</li>
+                        <li>Nyújtsd be a dékánnak, témavezetőnek vagy felettesednek</li>
+                        <li>Lehetőleg az INI-vel is egyeztesd</li>
+                    </ul>
+
+                    <h3>2. Együttműködés az INI-vel</h3>
+                    <ul>
+                        <li>Válaszolj a kérdésekre az értékeléshez szükséges információkkal</li>
+                        <li>Részt vegyél az egyeztetéseken</li>
+                        <li>Nyújtsd meg a szükséges dokumentumokat</li>
+                    </ul>
+
+                    <h3>3. Iparjogvédelmi eljárásban Közreműködés</h3>
+                    <ul>
+                        <li>Írd alá a szükséges dokumentumokat</li>
+                        <li>Nyújts szakmai információt az ügyvivő felé</li>
+                        <li>Végezz műszaki szakterületi egyeztetéseket</li>
+                    </ul>
+
+                    <h3>4. Titok fenntartása</h3>
+                    <div class="warning-box">
+                        <strong>⚠️ FONTOS:</strong> Nem hozhatod nyilvánosságra egy bejelentett szellemi alkotást a szabadalmi bejelentésig!
+                    </div>
+                    <ul>
+                        <li>Semmit sem szabad szóban vagy írásban publikálnod</li>
+                        <li>Konferenciákon nem szabad előadni róla</li>
+                        <li>Ha szükséges, külön titoktartási megállapodást kell aláírni</li>
+                    </ul>
+
+                    <h3>5. Mi történik, ha nem tartod be a szabályokat?</h3>
+                    <div class="success-box">
+                        <strong>Lehetséges következmények:</strong>
+                    </div>
+                    <ul>
+                        <li>Fegyelmi eljárás</li>
+                        <li>Pénzügyi követelés az egyetem felé</li>
+                        <li>Az iparjogvédelmi jog elvesztése (újdonság ront)</li>
+                        <li>Munkaügyi szankciók</li>
+                    </ul>
+                `
+            },
+            {
+                id: 'faq',
+                title: '❓ Gyakran ismételt kérdések',
+                content: `
+                    <h2>GYIK - Gyakran Ismételt Kérdések</h2>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Magánidőmben, magán eszközökkel készült a szellemi alkotásom. Az egyetemé?</span>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Válasz:</strong> Ha EGYIDEJÛLEG valamilyen universitás infrastruktúrát, finanszírozást, támogatást nem használtál (beleértve a mentorálást is), akkor NEM az egyetemé. DE: ha csak az egyetem bejelentéséhez kellett az infrastruktúra (még akkor is), akkor szolgálati jellegû lehet.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Lehet-e lemondani az egyetemi jogokról?</span>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Válasz:</strong> Igen, az IB dönthet róla. Az egyetem lemondhat az őt megillető jogokról a feltaláló javára, de csak olyan feltételek mellett, hogy a vagyonvesztés miatti kár nem okozva van az egyetemnek. Alkalmazotti alkotásnál nagyobb a lehetőség a lemondsásra.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Mit jelent a 90 napos határidő?</span>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Válasz:</strong> Az Szt. (Szabadalmak védelméről szóló törvény) 10. § szabályozza. Az egyetemnek 90 napja van ahhoz, hogy az első bejelentés napjától számítva nyilatkozzék arról, hogy igényt tart-e az iparjogvédelmi jogokra. Ha nem nyilatkozik, a feltaláló felszabadul.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Az egyetem korlátozza a publikálást?</span>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Válasz:</strong> Igen, de csak az oltalomszerzés érdekében. Az iparjogvédelmi eljárás befejezéséig nem szabad publikálni. Az INI és te közösen összehangoljátok a publikálási és oltalomszerzési folyamatokat.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Ki az Initium Zrt. és miért szükséges?</span>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Válasz:</strong> Az Initium Zrt. az Óbudai Egyetem szellemi tulajdon hasznosítására alapított gazdasági társasága. Ők nyújtanak üzleti tanácsadást, piackutatást végeznek, és segítik a szellemi alkotások üzleti hasznosítást (licencadás, spin-off alapítás, stb.).</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Több egyetemi és non-egyetemi munkahelyem van - mi történik?</span>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Válasz:</strong> Az egyetem köteles vizsgálni, hogy az ott munkaviszonyban létrehozottként szolgálati vagy alkalmazotti-e az alkotás. Ha másik helyen is szolgálatinak minősülne, az egyetem lemondhat a jogairól. Ezt neked jelezned kell és alátámasztanod!</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Mit tegyek, ha az egyetem döntésével nem értek egyet?</span>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Válasz:</strong> Jogorvoslatot kérhetsz! Az egyetem által írásban megküldött döntéstől számított 30 nap alatt részletes indokolással ellátott beadvánnyal fordulhatsz az Egyetemi Tanácshoz. Utána a bírósági felülvizsgálat is lehetséges.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Lehet-e spin-off vállalkozást alapítani az egyetem szellemi tulajdonából?</span>
+                            <span class="faq-toggle">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Válasz:</strong> Igen! Az Initium Zrt. és az INI segít ebben. A szellemi tulajdonjogok apportálása (nem pénzbeli hozzájárulásként bevisz) lehetséges, de az egyetem szerződésben rögzíti a feltételeket.</p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'contacts',
+                title: '📞 Hasznos Elérhetôségek',
+                content: `
+                    <h2>Kivel Tudok Beszélni?</h2>
+
+                    <h3>Innovációs Iroda (INI)</h3>
+                    <p><strong>Feladata:</strong> A szellemi alkotások befogadása, oltalmazása, és hasznosításának koordinálása.</p>
+                    <ul>
+                        <li><strong>Bejelentéseidet feladatait:</strong> Ide küldöd a bejelentő lapokat</li>
+                        <li><strong>Konzultáció:</strong> Az INI nyújt szakmai tanácsadást</li>
+                        <li><strong>Támogatás:</strong> Az INI segít az értékelési folyamatban</li>
+                    </ul>
+
+                    <h3>Az Innovációs Bizottság (IB)</h3>
+                    <p><strong>Feladata:</strong> Döntések hozása a szellemi alkotások befogadásáról, hasznosítási stratégiájáról.</p>
+                    <ul>
+                        <li><strong>Elnöke:</strong> Az innovációért felelős rektorhelyettes</li>
+                        <li><strong>Tagsága:</strong> Szakterületi képviseletek, jogi szakértők</li>
+                        <li><strong>Jogorvoslat:</strong> Az IB döntéseivel szemben jogorvoslatot lehet kérni</li>
+                    </ul>
+
+                    <h3>Initium Venture Labs Zrt. (Initium Zrt.)</h3>
+                    <p><strong>Feladata:</strong> Szellemi alkotások üzleti hasznosítása.</p>
+                    <ul>
+                        <li><strong>Hasznosítási stratégia:</strong> Üzleti értékelés, piackutatás</li>
+                        <li><strong>Partnerkeresés:</strong> Licencadás, spin-off alapítás</li>
+                        <li><strong>Szerződések:</strong> Hasznosítási megállapodások</li>
+                    </ul>
+
+                    <h3>Jogi Iroda</h3>
+                    <p><strong>Feladata:</strong> Jogi tanácsadás a szellemi tulajdon kezelésében.</p>
+                    <ul>
+                        <li><strong>Szerződések:</strong> Díjszerződések, hasznosítási szerződések</li>
+                        <li><strong>Jogorvoslat:</strong> Jogorvoslati eljárások</li>
+                    </ul>
+
+                    <h3>Gazdasági Főigazgatóság</h3>
+                    <p><strong>Feladata:</strong> Pénzügyi nyilvántartás, díj kifizetések.</p>
+                    <ul>
+                        <li><strong>Nyilvántartás:</strong> Szellemi alkotások számviteli kezelése</li>
+                        <li><strong>Kifizetések:</strong> Díjazások megfizetése</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <strong>💡 Tipp:</strong> Az első lépésben az Innovációs Irodához fordulj! Ők tudnak eligazítani az eljárásban.
+                    </div>
+                `
+            }
+        ];
+
+        let currentSection = 'overview';
+
+        function initializeApp() {
+            renderNavigation();
+            showSection('overview');
+        }
+
+        function renderNavigation() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.innerHTML = '';
+            sections.forEach(section => {
+                const li = document.createElement('li');
+                const button = document.createElement('button');
+                button.textContent = section.title;
+                button.className = section.id === 'overview' ? 'active' : '';
+                button.onclick = () => showSection(section.id);
+                li.appendChild(button);
+                navMenu.appendChild(li);
+            });
+        }
+
+        function showSection(sectionId) {
+            currentSection = sectionId;
+            const section = sections.find(s => s.id === sectionId);
+            const mainContent = document.getElementById('mainContent');
+            
+            mainContent.innerHTML = section.content;
+            
+            // Update active nav button
+            document.querySelectorAll('nav button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Scroll to top
+            mainContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const toggle = element.querySelector('.faq-toggle');
+            
+            // Close other FAQs
+            document.querySelectorAll('.faq-answer.active').forEach(item => {
+                if (item !== answer) {
+                    item.classList.remove('active');
+                    item.previousElementSibling.querySelector('.faq-toggle').classList.remove('active');
+                }
+            });
+            
+            answer.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            if (searchTerm.length < 2) {
+                return;
+            }
+            
+            const results = sections.filter(section => 
+                section.title.toLowerCase().includes(searchTerm) ||
+                section.content.toLowerCase().includes(searchTerm)
+            );
+            
+            if (results.length > 0) {
+                showSection(results[0].id);
+            }
+        });
+
+        // Initialize app on load
+        window.addEventListener('DOMContentLoaded', initializeApp);
+    </script>
+</body>
+</html>
